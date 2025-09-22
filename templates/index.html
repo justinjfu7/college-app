@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Search</title>
+</head>
+
+<body>
+
+
+<div class="header" id="mainheader">
+    <a href="{{ url_for('Home') }}" class="biglogo">Big Logo</a>
+    <div style="padding-top:10px; padding-right:50px;">
+        <a href="{{ url_for('Home') }}" class="headerbuttons">Home</a>
+        <a href="{{ url_for('Search') }}" class="headerbuttons">Search</a>
+        <a href="{{ url_for('about') }}" class="headerbuttons">About</a>
+        <a href="{{ url_for('FAQ') }}" class="headerbuttons">FAQ</a>
+    </div>
+    <nav>
+        <button class="headerbuttons" style="font-size: 25px;">login</button>
+    </nav>
+</div>
+
+<div class="container">
+    <div class="col">
+        <div style="text-align:left; font-size: 25px;"> 
+            Find a Counselors
+        </div>
+        <form action="/search" method="get">
+            <input class="searchbar"type="search" placeholder="Search">
+        </form>
+
+        <label>
+            <input type="checkbox">
+            <span class="custom-checkbox" style="margin-top: 8px"></span>
+            <div style="margin-top:8px">Essays</div>
+        </label>
+
+        <label>
+            <input type="checkbox">
+            <span class="custom-checkbox" style="margin-top: 8px"></span>
+            <div style="margin-top:8px">sample</div>
+        </label>
+
+        <label>
+            <input type="checkbox">
+            <span class="custom-checkbox" style="margin-top: 8px"></span>
+            <div style="margin-top:8px">sample</div>
+        </label>
+
+        <div class="slidecontainer" style="margin-top:8px;">
+            <div>Cool Slider</div>
+            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+        </div>
+
+    </div>
+    <div class="col">
+        <div style="text-align:left; font-size:25px;">
+            Matches
+            <div class="scrollable-rows" style="padding: 0; box-sizing: border-box">
+                <div class="row">name</div>
+                <div class="row">name</div>
+                <div class="row">name</div>
+                <div class="row">name</div>
+                <div class="row">name</div>
+                <div class="row">name</div>
+                <div class="row">name</div>
+                <div class="row">name</div>
+                <div class="row">name</div>
+                <div class="row">name</div>
+                <div class="row">name</div>
+                <div class="row">name</div>
+                <div class="row">name</div>
+                <div class="row">name</div>
+                <div class="row">name</div>
+                <div class="row">name</div>
+                <div class="row">name</div>
+                <div class="row">name</div>
+                <div class="row">name</div>
+                <div class="row">name</div>
+                <div class="row">name</div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div style="text-align:left; font-size:25px;">
+            Selected Counselor
+        </div>
+    </div>
+</div>
+
+
+
+<footer class="site-footer">
+    <div class="footer-section"></div>
+    <div class="footer-section">Contact</div>
+    <div class="footer-section">Stuff</div>
+    <div class="footer-section">Stuff</div>
+    <div class="footer-section"></div>
+</footer>
+
+
+</body>
+</html>

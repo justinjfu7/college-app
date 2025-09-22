@@ -1,0 +1,23 @@
+#this is what i imported from html just to check for later. nothing needs to be done and this can be deleted later.
+#from flask import Flask, render_template
+
+#app = Flask(__name__, template_folder="templates")
+
+#@app.route("/")
+#def Search():
+#    return render_template("index.html")
+
+#@app.route("/home")
+#def Home():
+#    return render_template("home.html")\
+#
+# @app.route("/about")
+#def about():
+#    return render_template("about.html")
+
+#@app.route("/FAQ")
+#def FAQ():
+#    return render_template("FAQ.html")
+
+#if __name__ == "__main__":
+#    app.run(debug=True)

@@ -1,10 +1,11 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask import request
 from flask import jsonify
 from flask import session
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
+
 
 app = Flask(__name__)
 
@@ -73,14 +74,29 @@ def logout():
     session.clear()  # clears session and cookie
     return {"message": "Logged out successfully!"}
 
+#html import belolw******************************************************
+app = Flask(__name__, template_folder="templates")
 
+@app.route("/")
+def Search():
+    return render_template("index.html")
 
+@app.route("/home")
+def Home():
+    return render_template("home.html")\
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+@app.route("/FAQ")
+def FAQ():
+    return render_template("FAQ.html")
+#End html import ***********************************************************
 @app.route("/ping", methods=["GET"])
 #test ping pong message
 def ping():
     return jsonify({"message": "pong"})
-
-
 
 with app.app_context():
     db.create_all()

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>About</title>
+</head>
+
+<body>
+
+
+<div class="header" id="mainheader">
+    <a href="{{ url_for('Home') }}" class="biglogo">Big Logo</a>
+    <div style="padding-top:10px; padding-right:50px;">
+        <a href="{{ url_for('Home') }}" class="headerbuttons">Home</a>
+        <a href="{{ url_for('Search') }}" class="headerbuttons">Search</a>
+        <a href="{{ url_for('about') }}" class="headerbuttons">About</a>
+        <a href="{{ url_for('FAQ') }}" class="headerbuttons">FAQ</a>
+    </div>
+    <nav>
+        <button class="headerbuttons" style="font-size: 25px;">login</button>
+    </nav>
+</div>
+
+<div style="min-height: 100vh"> </div>
+
+</div>
+<footer class="site-footer">
+    <div class="footer-section"></div>
+    <div class="footer-section">Contact</div>
+    <div class="footer-section">Stuff</div>
+    <div class="footer-section">Stuff</div>
+    <div class="footer-section"></div>
+</footer>
+
+</body>
