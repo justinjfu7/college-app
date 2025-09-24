@@ -7,16 +7,11 @@ from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
 
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="templates")
 
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
 db = SQLAlchemy(app)
 app.secret_key = "a_super_secret_key"
-
-@app.route("/")
-#checks if flask works
-def home():
-    return "Hello, Flask is working!"
 
 
 class User(db.Model):
@@ -25,6 +20,8 @@ class User(db.Model):
     username = db.Column(db.String(80), unique=True, nullable=False)
     password = db.Column(db.String(200), nullable=False)
     role = db.Column(db.String(20), nullable=False)
+    email = db.Column(db.String(40), nullable=False)
+    bio = db.Column(db.String(1000), nullable=True)
 
 @app.route("/signup", methods=["POST"])
 #signup route
@@ -33,16 +30,20 @@ def signup():
     username = data["username"]
     password = generate_password_hash(data["password"])
     role = data.get("role", "student")
+    email = data.get("email")
+    bio = data.get("bio")
 
     if User.query.filter_by(username=username).first():
         return {"error": "Username taken"}, 400
 
-    user = User(username=username, password=password, role=role)
+    user = User(username=username, password=password, role=role, email=email, bio=bio)
     db.session.add(user)
     db.session.commit()
     return {"message": "User created!"}, 201
 
-
+@app.route("/signup_page")
+def signup_page():
+    return render_template("signup_page.html")
 
 @app.route("/login", methods=["POST"])
 #login route
@@ -55,16 +56,18 @@ def login():
         return {"error": "Username and password required"}, 400
 
     user = User.query.filter_by(username=username).first()
-    session["user_ID"] = user.id
-    session["role"] = user.role
 
     if not user:
         return {"error": "User not found"}, 404
 
     if check_password_hash(user.password, password):
+        session["user_ID"] = user.id
+        session["role"] = user.role
         return {"message": f"Login successful!", "username": user.username, "role": user.role}, 200
     else:
         return {"error": "Incorrect password"}, 401
+    
+    
     
 
 
@@ -75,7 +78,7 @@ def logout():
     return {"message": "Logged out successfully!"}
 
 #html import belolw******************************************************
-app = Flask(__name__, template_folder="templates")
+
 
 @app.route("/")
 def Search():
@@ -83,11 +86,18 @@ def Search():
 
 @app.route("/home")
 def Home():
-    return render_template("home.html")\
+    return render_template("home.html")
 
 @app.route("/about")
 def about():
     return render_template("about.html")
+
+@app.route("/admin")
+def admin():
+    #if session.get("role") != "admin":
+        #return "Access denied", 403
+    
+    return render_template("admin.html")
 
 @app.route("/FAQ")
 def FAQ():
